@@ -21,7 +21,7 @@ def index(request):
     dests = destination.objects.all()
     posts = newspost.objects.all()
     obj = Item.objects.all()
-
+    tesmo = Feedback.objects.all()
     
     
     total_posts = posts.count()
@@ -54,7 +54,7 @@ def index(request):
                 sub.save()
             
 
-    context = {'dests': dests, 'posts': posts, 'obj': obj,'total_posts':total_posts, 'sub':sub}
+    context = {'dests': dests, 'posts': posts, 'obj': obj,'total_posts':total_posts, 'sub':sub, 'tesmo':tesmo}
     
     return render(request, "index.html", context)
 
@@ -157,7 +157,19 @@ def contact(request):
     return render(request, "contact.html", context)
     
 
+def viewpage(request, myid):
+    view = destination1.objects.filter(id=myid)
+    
+    return render(request, "viewpage.html", {'view': view})
+
+
+
 def search(request):
     obj = Item.objects.all()
     
     return render(request, "search.html", {'obj': obj})
+
+
+def reservation(request):
+    
+    return render(request, "reservation.html")

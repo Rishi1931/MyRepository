@@ -400,7 +400,7 @@ section
 .hamburger i
 {
 	font-size: 20px;
-	color: rgba(255,255,255,0.5);
+	color: rgba(255, 249, 249, 0.5);
 	cursor: pointer;
 	-webkit-transition: all 200ms ease;
 	-moz-transition: all 200ms ease;
@@ -728,7 +728,7 @@ section
 	color: #72728c !important;
 }
 
-} 
+ 
 .search_input:-ms-input-placeholder
 { 
 	font-family: 'Oswald', sans-serif;

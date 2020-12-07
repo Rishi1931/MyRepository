@@ -41,7 +41,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     
-    'embed_video'
+    'embed_video',
+    'social_django',
 ]
 
 MIDDLEWARE = [
@@ -52,6 +53,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'social_django.middleware.SocialAuthExceptionMiddleware',
 ]
 
 ROOT_URLCONF = 'mydjango.urls'
@@ -67,10 +69,24 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+
+
+                'social_django.context_processors.backends',  # <-- Here
+                'social_django.context_processors.login_redirect',
             ],
         },
     },
 ]
+
+
+AUTHENTICATION_BACKENDS = (
+    'social_core.backends.facebook.FacebookOAuth2',
+    'social_core.backends.twitter.TwitterOAuth',
+    'social_core.backends.github.GithubOAuth2',
+
+    'django.contrib.auth.backends.ModelBackend',
+)
+
 
 WSGI_APPLICATION = 'mydjango.wsgi.application'
 
@@ -136,6 +152,9 @@ MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media') 
 
 
+LOGIN_REDIRECT_URL = 'index'
+
+
 
 #SMTP Configuration
 
@@ -143,5 +162,10 @@ EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
-EMAIL_HOST_USER = 'rishiraj1931@gmail.com'
-EMAIL_HOST_PASSWORD = 'nishinidhi'
+EMAIL_HOST_USER = 'myydestination@gmail.com'
+EMAIL_HOST_PASSWORD = 'myydestination'
+
+
+
+SOCIAL_AUTH_FACEBOOK_KEY = '2797405890491888'  # App ID
+SOCIAL_AUTH_FACEBOOK_SECRET = '7a634d494272b5f2c1d32bd4dc0bc037'  # App Secret
